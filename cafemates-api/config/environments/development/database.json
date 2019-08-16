@@ -1,0 +1,19 @@
+{
+  "defaultConnection": "default",
+  "connections": {
+    "default": {
+      "connector": "strapi-hook-mongoose",
+      "settings": {
+        "database": "cafemates_dev",
+        "host": "ds163757.mlab.com",
+        "srv": false,
+        "port": "63757",
+        "username": "admin",
+        "password": "Root1234"
+      },
+      "options": {
+        "authenticationDatabase": "cafemates_dev"
+      }
+    }
+  }
+}
