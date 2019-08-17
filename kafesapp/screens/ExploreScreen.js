@@ -16,6 +16,7 @@ import StyledText from 'components/StyledText';
 import CardBox from 'components/CardBox';
 import Card from 'components/Card';
 import HighlightCard from 'components/HighlightCard';
+import FadeInView from 'components/FadeInView';
 import themes from 'theme/themes';
 import layouts from 'theme/layouts';
 
@@ -74,20 +75,22 @@ class ExploreScreen extends React.Component {
             />
           </View>
           {isSearchFocus && (
-            <View style={styles.searchContainer}>
-              <Image
-                source={CafeLocationImg}
-                resizeMode="contain"
-                style={styles.searchIcon}
-              />
-              <StyledText.Display>Let's find a cafe</StyledText.Display>
-              <StyledText.Bold>
-                Search by specific name or place
-              </StyledText.Bold>
-            </View>
+            <FadeInView>
+              <View style={styles.searchContainer}>
+                <Image
+                  source={CafeLocationImg}
+                  resizeMode="contain"
+                  style={styles.searchIcon}
+                />
+                <StyledText.Display>Let's find a cafe</StyledText.Display>
+                <StyledText.Bold>
+                  Search by specific name or place
+                </StyledText.Bold>
+              </View>
+            </FadeInView>
           )}
           {!isSearchFocus && (
-            <Fragment>
+            <FadeInView>
               <View style={styles.categoryContainer}>
                 <View style={[styles.sectionHeader, styles.content]}>
                   <StyledText.Bold>What Is Your Mood Today?</StyledText.Bold>
@@ -183,7 +186,7 @@ class ExploreScreen extends React.Component {
                   )}
                 />
               </View>
-            </Fragment>
+            </FadeInView>
           )}
         </ScrollView>
       </SafeAreaView>
