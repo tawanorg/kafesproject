@@ -1,36 +1,47 @@
-import React from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {Animated} from 'react-native';
 
-class FadeInView extends React.Component {
-  state = {
-    fadeAnim: new Animated.Value(0), // Initial value for opacity: 0
-  };
+class FadeInView extends Component {
+  constructor() {
+    super();
+    this.state = {
+      viewOpacity: new Animated.Value(0),
+    };
+  }
 
   componentDidMount() {
-    Animated.timing(
-      // Animate over time
-      this.state.fadeAnim, // The animated value to drive
-      {
-        toValue: 1, // Animate to opacity: 1 (opaque)
-        duration: 350, // Make it take a while
-        useNativeDriver: true,
-      },
-    ).start(); // Starts the animation
+    const {viewOpacity} = this.state;
+    const {onFadeComplete, duration = 350} = this.props;
+
+    Animated.timing(viewOpacity, {
+      toValue: 1,
+      duration,
+    }).start(onFadeComplete || (() => {}));
   }
 
   render() {
-    let {fadeAnim} = this.state;
+    const {viewOpacity} = this.state;
+    const {style} = this.props;
 
     return (
-      <Animated.View // Special animatable View
-        style={{
-          ...this.props.style,
-          opacity: fadeAnim, // Bind opacity to animated value
-        }}>
+      <Animated.View style={[{opacity: viewOpacity}].concat(style || [])}>
         {this.props.children}
       </Animated.View>
     );
   }
 }
+
+FadeInView.propTypes = {
+  onFadeComplete: PropTypes.func,
+  duration: PropTypes.number,
+  style: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+    PropTypes.object,
+    PropTypes.array,
+  ]),
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
+};
 
 export default FadeInView;
