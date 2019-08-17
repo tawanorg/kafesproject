@@ -14,7 +14,7 @@ const themes = {
   highlightText: colors.brand,
   // Searchbox
   searchBoxBackgroundColor: colors.light,
-  searchBoxBorderBottomColor: colors.brand,
+  searchBoxBorderColor: colors.grey,
   placeholderTextColor: colors.fontColor,
 };
 

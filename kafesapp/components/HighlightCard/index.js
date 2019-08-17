@@ -4,7 +4,8 @@ import {Image, View, StyleSheet} from 'react-native';
 import StyledText from 'components/StyledText';
 import LinearGradient from 'react-native-linear-gradient';
 
-function HighlightCard({height, width, photoUrl, style}) {
+function HighlightCard({photoUrl, style}) {
+  let {height, width} = style;
   return (
     <View style={[styles.container, {height, width}, style]}>
       <Image
@@ -24,13 +25,17 @@ function HighlightCard({height, width, photoUrl, style}) {
 }
 
 HighlightCard.propTypes = {
-  width: PropTypes.number,
-  height: PropTypes.number,
+  style: PropTypes.objectOf({
+    width: PropTypes.number,
+    height: PropTypes.number,
+  }),
 };
 
 HighlightCard.defaultProps = {
-  width: 120,
-  height: 140,
+  style: {
+    width: 120,
+    height: 140,
+  },
 };
 
 const styles = StyleSheet.create({

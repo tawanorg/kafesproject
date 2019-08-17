@@ -2,51 +2,67 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Image, View, StyleSheet} from 'react-native';
 import StyledText from 'components/StyledText';
-import themes from 'theme/themes';
-import layouts from 'theme/layouts';
+import LinearGradient from 'react-native-linear-gradient';
 
-function Card({photoUrl, style}) {
-  let {width, height} = style;
+function CardBox({photoUrl, title, style}) {
+  let {height, width} = style;
   return (
-    <View style={[styles.container, style]}>
+    <View style={[styles.container, {height, width}, style]}>
       <Image
-        style={[styles.cover, {width, height}]}
+        style={[styles.cover, {height, width}]}
         source={{uri: photoUrl}}
         resizeMode="cover"
+      />
+      <StyledText.Bold numberOfLines={2} style={styles.title}>
+        {title}
+      </StyledText.Bold>
+      <LinearGradient
+        colors={['transparent', 'rgba(0,0,0,0.8)']}
+        style={[styles.linearGradient, {height, width}]}
       />
     </View>
   );
 }
 
-Card.propTypes = {
-  width: PropTypes.number,
-  height: PropTypes.number,
+CardBox.propTypes = {
+  photoUrl: PropTypes.string,
+  title: PropTypes.string,
+  style: PropTypes.object,
 };
 
-Card.defaultProps = {
-  width: 120,
-  height: 90,
+CardBox.defaultProps = {
+  photoUrl: null,
+  title: 'Title',
+  style: null,
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     borderRadius: 4,
     overflow: 'hidden',
+  },
+  linearGradient: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
   },
   cover: {
     borderRadius: 4,
   },
-  content: {
-    flex: 1,
-    paddingHorizontal: layouts.gutterWidth / 2,
-  },
   title: {
-    color: '#000',
-    fontSize: 16,
+    position: 'absolute',
+    bottom: 0,
+    color: '#FFFF',
+    zIndex: 100,
+    paddingVertical: 7,
+    paddingHorizontal: 7,
+    fontSize: 13,
+    textAlign: 'center',
   },
 });
 
-export default Card;
+export default CardBox;

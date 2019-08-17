@@ -42,7 +42,12 @@ class HomeScreen extends React.Component {
                 <TouchableOpacity>
                   <HighlightCard
                     photoUrl={`https://source.unsplash.com/200x200/?cafe,${index}`}
-                    style={{marginLeft: index == 0 && 15, marginRight: 15}}
+                    style={{
+                      marginLeft: index == 0 && 15, 
+                      marginRight: 15,
+                      width: 120,
+                      height: 140,
+                    }}
                   />
                 </TouchableOpacity>
               )}
@@ -62,9 +67,12 @@ class HomeScreen extends React.Component {
                 <TouchableOpacity>
                   <HighlightCard
                     photoUrl={`https://source.unsplash.com/200x200/?cafe,shop,${index}`}
-                    style={{marginLeft: index == 0 && 15, marginRight: 15}}
-                    width={200}
-                    height={200}
+                    style={{
+                      marginLeft: index == 0 && 15, 
+                      marginRight: 15,
+                      width: 200,
+                      height: 200,
+                    }}
                   />
                 </TouchableOpacity>
               )}
@@ -72,7 +80,7 @@ class HomeScreen extends React.Component {
           </View>
           <View style={styles.furtherAwayContainer}>
             <View style={[styles.sectionHeader, styles.content]}>
-              <StyledText.Bold>Further Away</StyledText.Bold>
+              <StyledText.Bold>Your Favorite Cafes</StyledText.Bold>
             </View>
             <FlatList
               showsVerticalScrollIndicator={false}

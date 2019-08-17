@@ -36,7 +36,7 @@ CardBox.defaultProps = {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
+    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     borderRadius: 4,

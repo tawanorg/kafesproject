@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
 
 import HomeScreen from 'screens/HomeScreen';
-import BrowseScreen from 'screens/BrowseScreen';
+import ExploreScreen from 'screens/ExploreScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -19,12 +19,12 @@ HomeStack.navigationOptions = {
   // ),
 };
 
-const SearchStack = createStackNavigator({
-  Search: BrowseScreen,
+const ExploreStack = createStackNavigator({
+  Explore: ExploreScreen,
 });
 
-SearchStack.navigationOptions = {
-  tabBarLabel: 'Search',
+ExploreStack.navigationOptions = {
+  tabBarLabel: 'Explore',
   // tabBarIcon: ({focused}) => (
   //   <Feather
   //     name="monitor"
@@ -66,7 +66,7 @@ SettingStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   HomeStack,
-  SearchStack,
+  ExploreStack,
   NotificationStack,
   SettingStack,
 });
