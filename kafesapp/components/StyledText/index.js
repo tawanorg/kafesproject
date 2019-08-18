@@ -6,7 +6,9 @@ function StyledText(props) {
   return <Text style={styles.text} {...props} />;
 }
 
-StyledText.Bold = props => <StyledText style={styles.bold} {...props} />;
+StyledText.Bold = ({style, ...props}) => (
+  <StyledText style={[styles.bold, style]} {...props} />
+);
 
 StyledText.Display = props => <StyledText style={styles.display} {...props} />;
 
@@ -24,7 +26,7 @@ const styles = StyleSheet.create({
   },
   bold: {
     ...baseFontStyle,
-    fontWeight: '500',
+    fontWeight: '600',
   },
   display: {
     fontSize: 22,

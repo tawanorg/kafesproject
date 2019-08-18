@@ -3,20 +3,14 @@ import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
 
 import HomeScreen from 'screens/HomeScreen';
 import ExploreScreen from 'screens/ExploreScreen';
-import NotificationScreen from 'screens/NotificationScreen';
 import SettingScreen from 'screens/SettingScreen';
-import ProfileScreen from 'screens/ProfileScreen';
+import NotificationTopNavigator from './NotificationTopNavigator';
 
 const appScreens = {
-  Home: {
-    screen: HomeScreen,
-  },
+  Home: HomeScreen,
   Explore: ExploreScreen,
-  Notification: NotificationScreen,
+  Notification: NotificationTopNavigator,
   Setting: SettingScreen,
-  Profile: {
-    screen: ProfileScreen,
-  },
 };
 
 const createStacks = screens => {

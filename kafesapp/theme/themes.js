@@ -7,6 +7,7 @@ const colors = {
 };
 
 const themes = {
+  mainBrandColor: colors.brand,
   mainBackgroundColor: colors.white,
   mainSecondBackgroundColor: colors.light,
   mainBorderColor: colors.grey,
