@@ -3,70 +3,47 @@ import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
 
 import HomeScreen from 'screens/HomeScreen';
 import ExploreScreen from 'screens/ExploreScreen';
+import NotificationScreen from 'screens/NotificationScreen';
+import SettingScreen from 'screens/SettingScreen';
+import ProfileScreen from 'screens/ProfileScreen';
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
-});
-
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
-  // tabBarIcon: ({focused}) => (
-  //   <Feather
-  //     name="monitor"
-  //     size={26}
-  //     color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-  //   />
-  // ),
-};
-
-const ExploreStack = createStackNavigator({
+const appScreens = {
+  Home: {
+    screen: HomeScreen,
+  },
   Explore: ExploreScreen,
-});
-
-ExploreStack.navigationOptions = {
-  tabBarLabel: 'Explore',
-  // tabBarIcon: ({focused}) => (
-  //   <Feather
-  //     name="monitor"
-  //     size={26}
-  //     color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-  //   />
-  // ),
+  Notification: NotificationScreen,
+  Setting: SettingScreen,
+  Profile: {
+    screen: ProfileScreen,
+  },
 };
 
-const NotificationStack = createStackNavigator({
-  Notification: HomeScreen,
-});
+const createStacks = screens => {
+  const stacks = [];
+  Object.keys(screens).map(key => {
+    let screenKey = key;
+    let screenComponent = screens[screenKey];
+    let allProps = {};
+    let navigationOptions = {
+      tabBarLabel: screenKey,
+    };
 
-NotificationStack.navigationOptions = {
-  tabBarLabel: 'Notification',
-  // tabBarIcon: ({focused}) => (
-  //   <Feather
-  //     name="monitor"
-  //     size={26}
-  //     color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-  //   />
-  // ),
+    if (typeof screenComponent === 'object') {
+      let {screen, navigationOptions: options, ...anotherProps} = screens[key];
+      allProps = anotherProps;
+      navigationOptions = options;
+      screenComponent = screen;
+    }
+
+    stacks[screenKey] = createStackNavigator({
+      [screenKey]: screenComponent,
+    });
+
+    stacks[screenKey].navigationOptions = navigationOptions;
+    Object.assign({}, stacks[screenKey], {...allProps});
+  });
+  return stacks;
 };
 
-const SettingStack = createStackNavigator({
-  Setting: HomeScreen,
-});
-
-SettingStack.navigationOptions = {
-  tabBarLabel: 'Setting',
-  // tabBarIcon: ({focused}) => (
-  //   <Feather
-  //     name="monitor"
-  //     size={26}
-  //     color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-  //   />
-  // ),
-};
-
-export default createBottomTabNavigator({
-  HomeStack,
-  ExploreStack,
-  NotificationStack,
-  SettingStack,
-});
+export default createBottomTabNavigator(createStacks(appScreens));
