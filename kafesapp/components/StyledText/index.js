@@ -14,7 +14,9 @@ StyledText.Bold = ({style, ...props}) => (
   <StyledText style={[styles.bold, style]} {...props} />
 );
 
-StyledText.Display = props => <StyledText style={styles.display} {...props} />;
+StyledText.Display = ({style, ...props}) => (
+  <StyledText style={[styles.display, style]} {...props} />
+);
 
 const baseFontStyle = {
   fontSize: 16,

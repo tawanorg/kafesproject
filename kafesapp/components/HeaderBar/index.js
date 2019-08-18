@@ -1,31 +1,29 @@
 import React from 'react';
-import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import {withNavigation} from 'react-navigation';
 import Header from 'components/Header';
 import StyledText from 'components/StyledText';
 // import themes from 'theme/themes';
 
-function HeaderBar({title, navigation, showBackButton, rightButton}) {
-  return (
-    <Header>
-      <View style={styles.container}>
-        {showBackButton ? (
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={[styles.button, styles.title]}>
-            <StyledText.Bold>Back</StyledText.Bold>
-          </TouchableOpacity>
-        ) : (
-          <View />
-        )}
-        <StyledText.Bold style={[styles.header, styles.title]}>
-          {title}
-        </StyledText.Bold>
-        {rightButton}
-      </View>
-    </Header>
-  );
-}
+const HeaderBar = ({title, navigation, showBackButton, rightButton}) => (
+  <Header>
+    <View style={styles.container}>
+      {showBackButton ? (
+        <TouchableOpacity
+          onPress={() => navigation.goBack(null)}
+          style={[styles.button, styles.title]}>
+          <StyledText.Bold>Back</StyledText.Bold>
+        </TouchableOpacity>
+      ) : (
+        <View />
+      )}
+      <StyledText.Bold style={[styles.header, styles.title]}>
+        {title}
+      </StyledText.Bold>
+      {rightButton}
+    </View>
+  </Header>
+);
 
 const styles = StyleSheet.create({
   container: {

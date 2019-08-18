@@ -1,20 +1,21 @@
 import React from 'react';
-import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import HeaderBar from 'components/HeaderBar';
 import StyledText from 'components/StyledText';
-// import themes from 'theme/themes';
+import Avatar from 'components/Avatar';
+import themes from 'theme/themes';
 import layouts from 'theme/layouts';
 
 class ProfileScreen extends React.Component {
   static navigationOptions = ({navigation}) => ({
     header: () => (
       <HeaderBar
-        title="Tawan"
+        title="@tawan"
         rightButton={
           <TouchableOpacity
             onPress={() => navigation.navigate('MySetting')}
             style={styles.title}>
-            <StyledText.Bold>Setting</StyledText.Bold>
+            <StyledText.Bold>Manage</StyledText.Bold>
           </TouchableOpacity>
         }
       />
@@ -24,8 +25,27 @@ class ProfileScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View>
-          <Text>ProfileScreen</Text>
+        <View style={styles.header}>
+          <Avatar width={100} height={100} />
+          <StyledText.Display style={styles.username}>
+            Tim Tawan
+          </StyledText.Display>
+          <View style={styles.infoContainer}>
+            <TouchableOpacity style={[styles.stats, styles.statsActive]}>
+              <StyledText.Bold style={styles.textStats}>412</StyledText.Bold>
+              <StyledText style={styles.textStats}>Check-Ins</StyledText>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.stats}>
+              <StyledText.Bold style={styles.textStats}>310</StyledText.Bold>
+              <StyledText style={styles.textStats}>Followers</StyledText>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.stats}>
+              <StyledText.Bold style={styles.textStats}>240</StyledText.Bold>
+              <StyledText style={styles.textStats}>Following</StyledText>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -36,23 +56,36 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  content: {
-    paddingHorizontal: layouts.gutterWidth / 2,
-  },
   // Header
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    // backgroundColor: themes.mainSecondBackgroundColor,
+    paddingTop: layouts.gutterWidth,
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
+    borderBottomWidth: 0.4,
+    borderColor: themes.mainBorderColor,
   },
-  headerTitle: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
+  infoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  stats: {
     justifyContent: 'center',
+    flex: 1,
+    paddingVertical: layouts.gutterWidth / 3,
+    // backgroundColor: themes.mainBackgroundColor,
+  },
+  statsActive: {
+    // backgroundColor: themes.mainSecondBackgroundColor,
+  },
+  textStats: {
     textAlign: 'center',
-    width: '100%',
+  },
+  username: {
+    paddingVertical: layouts.gutterWidth / 2,
   },
   title: {
     top: 10,
