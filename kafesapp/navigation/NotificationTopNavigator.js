@@ -3,7 +3,7 @@ import {createMaterialTopTabNavigator} from 'react-navigation';
 import NotificationForYouScreen from 'screens/NotificationForYouScreen';
 import NotificationFollowingScreen from 'screens/NotificationFollowingScreen';
 import TabButtons from 'components/TabButtons';
-import TextHeader from 'components/TextHeader';
+import HeaderBar from 'components/HeaderBar';
 
 const Tabs = {
   ForYou: 'You',
@@ -25,7 +25,7 @@ const NotificationTopNavigator = createMaterialTopTabNavigator(
 );
 
 NotificationTopNavigator.navigationOptions = {
-  header: () => <TextHeader title="Notification" />,
+  header: () => <HeaderBar title="Notification" />,
 };
 
 export default NotificationTopNavigator;

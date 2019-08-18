@@ -1,8 +1,6 @@
 import React from 'react';
 import {
-  ScrollView,
   View,
-  SafeAreaView,
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';

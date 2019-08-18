@@ -6,10 +6,11 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import HomeHeader from 'components/HomeHeader';
+
 import StyledText from 'components/StyledText';
 import HighlightCard from 'components/HighlightCard';
 import LocationChanger from 'components/LocationChanger';
+import HomeHeader from 'components/HomeHeader';
 import Card from 'components/Card';
 import themes from 'theme/themes';
 import layouts from 'theme/layouts';

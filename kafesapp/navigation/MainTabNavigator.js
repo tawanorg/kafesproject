@@ -1,16 +1,21 @@
 import React from 'react';
 import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
 
-import HomeScreen from 'screens/HomeScreen';
+import DashboardScreen from 'screens/DashboardScreen';
 import ExploreScreen from 'screens/ExploreScreen';
-import SettingScreen from 'screens/SettingScreen';
+import UserScreen from 'screens/UserScreen';
 import NotificationTopNavigator from './NotificationTopNavigator';
 
 const appScreens = {
-  Home: HomeScreen,
+  Home: DashboardScreen,
   Explore: ExploreScreen,
   Notification: NotificationTopNavigator,
-  Setting: SettingScreen,
+  User: {
+    screen: UserScreen,
+    stackNavigatorConfig: {
+      headerMode: 'none',
+    },
+  },
 };
 
 const createStacks = screens => {
@@ -19,22 +24,32 @@ const createStacks = screens => {
     let screenKey = key;
     let screenComponent = screens[screenKey];
     let allProps = {};
-    let navigationOptions = {
+    let allStackNavigatorConfig = {};
+    let allNavigationOptions = {
       tabBarLabel: screenKey,
     };
 
     if (typeof screenComponent === 'object') {
-      let {screen, navigationOptions: options, ...anotherProps} = screens[key];
+      let {
+        screen,
+        stackNavigatorConfig,
+        navigationOptions,
+        ...anotherProps
+      } = screens[key];
       allProps = anotherProps;
-      navigationOptions = options;
+      allStackNavigatorConfig = stackNavigatorConfig;
+      allNavigationOptions = navigationOptions;
       screenComponent = screen;
     }
 
-    stacks[screenKey] = createStackNavigator({
-      [screenKey]: screenComponent,
-    });
+    stacks[screenKey] = createStackNavigator(
+      {
+        [screenKey]: screenComponent,
+      },
+      allStackNavigatorConfig,
+    );
 
-    stacks[screenKey].navigationOptions = navigationOptions;
+    stacks[screenKey].navigationOptions = allNavigationOptions;
     Object.assign({}, stacks[screenKey], {...allProps});
   });
   return stacks;

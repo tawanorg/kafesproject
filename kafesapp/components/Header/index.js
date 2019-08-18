@@ -4,8 +4,8 @@ import layouts from 'theme/layouts';
 import headerHeight from 'utils/headerHeight';
 import themes from 'theme/themes';
 
-function Header({children}) {
-  return <View style={styles.container}>{children}</View>;
+function Header({children, style}) {
+  return <View style={[styles.container, style]}>{children}</View>;
 }
 
 const styles = StyleSheet.create({

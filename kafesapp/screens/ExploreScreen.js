@@ -3,13 +3,12 @@ import {
   ScrollView,
   View,
   FlatList,
-  SafeAreaView,
   TouchableOpacity,
   StyleSheet,
   Image,
   Dimensions,
 } from 'react-native';
-import TextHeader from 'components/TextHeader';
+import HeaderBar from 'components/HeaderBar';
 import LocationChanger from 'components/LocationChanger';
 import SearchBox from 'components/SearchBox';
 import StyledText from 'components/StyledText';
@@ -34,7 +33,7 @@ class ExploreScreen extends React.Component {
   }
 
   static navigationOptions = {
-    header: () => <TextHeader title="Explore" />,
+    header: () => <HeaderBar title="Explore" />,
   };
 
   handleOnToggleFocus = focused => {
@@ -60,7 +59,7 @@ class ExploreScreen extends React.Component {
     const {isSearchFocus} = this.state;
 
     return (
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.container}>
@@ -189,7 +188,7 @@ class ExploreScreen extends React.Component {
             </FadeInView>
           )}
         </ScrollView>
-      </SafeAreaView>
+      </View>
     );
   }
 }

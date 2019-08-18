@@ -1,10 +1,13 @@
 import React from 'react';
+import {withNavigation} from 'react-navigation';
 import {TouchableOpacity, Image, StyleSheet} from 'react-native';
 import layouts from 'theme/layouts';
 
-function Avatar() {
+function Avatar({navigation}) {
   return (
-    <TouchableOpacity style={styles.container} onPress={() => null}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate('MyProfile')}>
       <Image
         resizeMode="contain"
         source={require('images/avatar-default.jpeg')}
@@ -23,4 +26,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Avatar;
+export default withNavigation(Avatar);
