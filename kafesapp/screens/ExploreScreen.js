@@ -18,6 +18,7 @@ import HighlightCard from 'components/HighlightCard';
 import FadeInView from 'components/FadeInView';
 import themes from 'theme/themes';
 import layouts from 'theme/layouts';
+import withChangeLocation from '../hoc/withChangeLocation';
 
 // Images
 import CafeLocationImg from 'images/cafe-location.png';
@@ -44,9 +45,9 @@ class ExploreScreen extends React.Component {
 
   onChangeText = text => {
     let {isSearchFocus} = this.state;
-    if (text === '') {
-      this.handleOnToggleFocus(false);
-    }
+    // if (text === '') {
+    //   this.handleOnToggleFocus(false);
+    // }
 
     if (!isSearchFocus) {
       this.handleOnToggleFocus(true);
@@ -64,14 +65,24 @@ class ExploreScreen extends React.Component {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.container}>
           <View style={styles.content}>
-            <LocationChanger />
+            <LocationChanger
+              onPress={() => this.props.navigation.navigate('LocationModal')}
+            />
           </View>
-          <View style={styles.content}>
+          <View style={[styles.inputContainer, styles.content]}>
             <SearchBox
               onFocus={() => this.handleOnToggleFocus(true)}
-              onBlur={() => this.handleOnToggleFocus(false)}
+              // onBlur={() => this.handleOnToggleFocus(false)}
               onChangeText={text => this.onChangeText(text)}
+              style={{flex: 1}}
             />
+            {isSearchFocus && (
+              <TouchableOpacity onPress={() => this.handleOnToggleFocus(false)}>
+                <StyledText.Bold style={styles.cancelButton}>
+                  Cancel
+                </StyledText.Bold>
+              </TouchableOpacity>
+            )}
           </View>
           {isSearchFocus && (
             <FadeInView>
@@ -244,6 +255,14 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     opacity: 0.8,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  cancelButton: {
+    marginLeft: 10,
   },
 });
 

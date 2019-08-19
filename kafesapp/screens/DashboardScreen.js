@@ -14,6 +14,7 @@ import HomeHeader from 'components/HomeHeader';
 import Card from 'components/Card';
 import themes from 'theme/themes';
 import layouts from 'theme/layouts';
+import withChangeLocation from '../hoc/withChangeLocation';
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -27,7 +28,9 @@ class HomeScreen extends React.Component {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.container}>
           <View style={styles.content}>
-            <LocationChanger />
+            <LocationChanger
+              onPress={() => this.props.navigation.navigate('LocationModal')}
+            />
           </View>
           <View style={styles.popularContainer}>
             <View style={[styles.sectionHeader, styles.content]}>
@@ -44,7 +47,7 @@ class HomeScreen extends React.Component {
                   <HighlightCard
                     photoUrl={`https://source.unsplash.com/200x200/?cafe,${index}`}
                     style={{
-                      marginLeft: index == 0 && 15, 
+                      marginLeft: index == 0 && 15,
                       marginRight: 15,
                       width: 120,
                       height: 140,
@@ -69,7 +72,7 @@ class HomeScreen extends React.Component {
                   <HighlightCard
                     photoUrl={`https://source.unsplash.com/200x200/?cafe,shop,${index}`}
                     style={{
-                      marginLeft: index == 0 && 15, 
+                      marginLeft: index == 0 && 15,
                       marginRight: 15,
                       width: 200,
                       height: 200,

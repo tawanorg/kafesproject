@@ -12,9 +12,9 @@ import layouts from 'theme/layouts';
 
 class LocationChanger extends React.Component {
   render() {
-    const {onFocus, onBlur, onChangeText} = this.props;
+    const {onFocus, onBlur, onChangeText, style} = this.props;
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, style]}>
         <TextInput
           clearButtonMode="always"
           placeholder="Search by cafe shop or place"
