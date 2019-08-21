@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
     fontWeight: '300',
   },
   display: {
-    fontSize: 22,
-    lineHeight: 32,
+    fontSize: 20,
+    lineHeight: 28,
     fontWeight: '700',
     color: themes.mainFontColor,
   },

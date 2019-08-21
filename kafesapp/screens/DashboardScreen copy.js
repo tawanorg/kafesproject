@@ -10,20 +10,27 @@ import {
 import StyledText from 'components/StyledText';
 import HighlightCard from 'components/HighlightCard';
 import LocationChanger from 'components/LocationChanger';
+import HomeHeader from 'components/HomeHeader';
 import Card from 'components/Card';
 import themes from 'theme/themes';
 import layouts from 'theme/layouts';
+import withChangeLocation from '../hoc/withChangeLocation';
 
-class DashboardScreen extends React.Component {
+class HomeScreen extends React.Component {
+  static navigationOptions = {
+    header: () => <HomeHeader />,
+  };
+
   render() {
-    const {style} = this.props;
     return (
-      <View style={[{flex: 1}, style]}>
+      <Fragment>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.container}>
           <View style={styles.content}>
-            <LocationChanger />
+            <LocationChanger
+              onPress={() => this.props.navigation.navigate('LocationModal')}
+            />
           </View>
           <View style={styles.popularContainer}>
             <View style={[styles.sectionHeader, styles.content]}>
@@ -76,28 +83,27 @@ class DashboardScreen extends React.Component {
             />
           </View>
           <View style={styles.furtherAwayContainer}>
-            <View style={[styles.sectionAllCafesHeader, styles.content]}>
-              <StyledText.Bold>More Cafes</StyledText.Bold>
-              <TouchableOpacity>
-                <StyledText>Sort by: Recommendation</StyledText>
-              </TouchableOpacity>
+            <View style={[styles.sectionHeader, styles.content]}>
+              <StyledText.Bold>Your Favorite Cafes</StyledText.Bold>
             </View>
             <FlatList
               showsVerticalScrollIndicator={false}
-              style={styles.list}
+              style={[styles.list, styles.content]}
               data={[1, 2, 3, 4, 5]}
               renderItem={({index}) => (
-                <Card
-                  photoUrl={`https://source.unsplash.com/200x200/?cafe,${index}`}
-                  style={{
-                    marginBottom: 20,
-                  }}
-                />
+                <TouchableOpacity>
+                  <Card
+                    photoUrl={`https://source.unsplash.com/200x200/?cafe,${index}`}
+                    style={{
+                      marginBottom: 15,
+                    }}
+                  />
+                </TouchableOpacity>
               )}
             />
           </View>
         </ScrollView>
-      </View>
+      </Fragment>
     );
   }
 }
@@ -147,12 +153,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
   },
-  sectionAllCafesHeader: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-    marginBottom: 10,
-  },
 });
 
-export default DashboardScreen;
+export default HomeScreen;

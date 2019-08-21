@@ -44,11 +44,11 @@ LocationChanger.defaultProps = {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: layouts.gutterWidth / 2,
+    paddingVertical: layouts.gutterWidth / 3,
     borderColor: themes.searchBoxBorderColor,
     // backgroundColor: themes.searchBoxBackgroundColor,
     borderWidth: 1,
-    borderRadius: 4,
+    borderRadius: 30,
   },
   wrapper: {
     flexDirection: 'row',

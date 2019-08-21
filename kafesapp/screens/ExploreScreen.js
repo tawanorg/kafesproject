@@ -7,8 +7,9 @@ import {
   StyleSheet,
   Image,
   Dimensions,
+  Text
 } from 'react-native';
-import HeaderBar from 'components/HeaderBar';
+import HomeHeader from 'components/HomeHeader';
 import LocationChanger from 'components/LocationChanger';
 import SearchBox from 'components/SearchBox';
 import StyledText from 'components/StyledText';
@@ -34,7 +35,7 @@ class ExploreScreen extends React.Component {
   }
 
   static navigationOptions = {
-    header: () => <HeaderBar title="Explore" />,
+    header: () => <HomeHeader />,
   };
 
   handleOnToggleFocus = focused => {
@@ -101,7 +102,7 @@ class ExploreScreen extends React.Component {
           )}
           {!isSearchFocus && (
             <FadeInView>
-              <View style={styles.categoryContainer}>
+              {/* <View style={styles.categoryContainer}>
                 <View style={[styles.sectionHeader, styles.content]}>
                   <StyledText.Bold>What Is Your Mood Today?</StyledText.Bold>
                 </View>
@@ -118,14 +119,79 @@ class ExploreScreen extends React.Component {
                   ]}
                   renderItem={({item, index}) => (
                     <TouchableOpacity>
-                      <CardBox
-                        title={item}
+                      <Text>Box</Text>
+                    </TouchableOpacity>
+                  )}
+                />
+              </View> */}
+              <View style={styles.popularContainer}>
+                <View style={[styles.sectionHeader, styles.content]}>
+                  <StyledText.Bold>Popular</StyledText.Bold>
+                  <StyledText>The top 20 cafes you might like</StyledText>
+                </View>
+                <FlatList
+                  style={styles.list}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  data={[1, 2, 3, 4, 5]}
+                  renderItem={({index}) => (
+                    <TouchableOpacity>
+                      <HighlightCard
+                        photoUrl={`https://source.unsplash.com/200x200/?cafe,${index}`}
+                        style={{
+                          marginLeft: index == 0 && 15,
+                          marginRight: 15,
+                          width: 120,
+                          height: 150,
+                        }}
+                      />
+                    </TouchableOpacity>
+                  )}
+                />
+              </View>
+              <View style={styles.justfForYouContainer}>
+                <View style={[styles.sectionHeader, styles.content]}>
+                  <StyledText.Bold>Just For You</StyledText.Bold>
+                  <StyledText>We knew you'll like them</StyledText>
+                </View>
+                <FlatList
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  style={styles.list}
+                  data={[1, 2, 3, 4, 5]}
+                  renderItem={({index}) => (
+                    <TouchableOpacity>
+                      <HighlightCard
+                        photoUrl={`https://source.unsplash.com/200x200/?cafe,shop,${index}`}
+                        style={{
+                          marginLeft: index == 0 && 15,
+                          marginRight: 15,
+                          width: 200,
+                          height: 200,
+                        }}
+                      />
+                    </TouchableOpacity>
+                  )}
+                />
+              </View>
+              <View style={styles.sectionContainer}>
+                <View style={[styles.sectionHeader, styles.content]}>
+                  <StyledText.Bold>Following</StyledText.Bold>
+                  <StyledText>People you following</StyledText>
+                </View>
+                <FlatList
+                  style={styles.list}
+                  numColumns={2}
+                  data={[1, 2, 3, 4, 5, 6]}
+                  renderItem={({index}) => (
+                    <TouchableOpacity>
+                      <HighlightCard
                         photoUrl={`https://source.unsplash.com/200x200/?cafe,${index}`}
                         style={{
                           marginLeft: layouts.gutterWidth / 2,
                           marginBottom: layouts.gutterWidth / 2,
-                          width: SIZE.width / 3 - 20,
-                          height: SIZE.width / 3 - 20,
+                          width: SIZE.width / 2 - 25,
+                          height: SIZE.width / 2 - 25,
                         }}
                       />
                     </TouchableOpacity>
@@ -146,30 +212,6 @@ class ExploreScreen extends React.Component {
                         photoUrl={`https://source.unsplash.com/200x200/?cafe,${index}`}
                         style={{
                           marginBottom: 15,
-                        }}
-                      />
-                    </TouchableOpacity>
-                  )}
-                />
-              </View>
-              <View style={styles.sectionContainer}>
-                <View style={[styles.sectionHeader, styles.content]}>
-                  <StyledText.Bold>Popular</StyledText.Bold>
-                  <StyledText>The top 10 cafes you might like</StyledText>
-                </View>
-                <FlatList
-                  style={styles.list}
-                  numColumns={2}
-                  data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-                  renderItem={({index}) => (
-                    <TouchableOpacity>
-                      <HighlightCard
-                        photoUrl={`https://source.unsplash.com/200x200/?cafe,${index}`}
-                        style={{
-                          marginLeft: layouts.gutterWidth / 2,
-                          marginBottom: layouts.gutterWidth / 2,
-                          width: SIZE.width / 2 - 25,
-                          height: SIZE.width / 2 - 25,
                         }}
                       />
                     </TouchableOpacity>
@@ -231,13 +273,24 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
   },
+  popularContainer: {
+    marginTop: 15,
+    paddingVertical: layouts.gutterWidth / 2,
+    backgroundColor: themes.mainSecondBackgroundColor,
+    ...borderStyle,
+  },
+  justfForYouContainer: {
+    paddingVertical: layouts.gutterWidth / 2,
+    ...borderStyle,
+  },
   categoryContainer: {
     paddingTop: layouts.gutterWidth / 2,
     paddingBottom: 5,
     ...containerStyle,
-    ...borderStyle,
+    // ...borderStyle,
   },
   sectionContainer: {
+    paddingTop: 15,
     // ...containerStyle,
   },
   searchContainer: {

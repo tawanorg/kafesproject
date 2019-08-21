@@ -9,19 +9,11 @@ import {
 } from 'react-native';
 
 import HeaderBar from 'components/HeaderBar';
+import Card from 'components/Card';
 import StyledText from 'components/StyledText';
 import {withNavigation, SafeAreaView} from 'react-navigation';
 import themes from 'theme/themes';
 import layouts from 'theme/layouts';
-
-const LOCATIONS = [
-  'Melbourne, Victoria, Australia',
-  'Sydney, NSW, Australia',
-  'Docklands, Victoria, Australia',
-  'West Melbourne, Victoria, Australia',
-  'Carlton, Victoria, Australia',
-  'Southbank, Victoria, Australia',
-];
 
 class LocationScreen extends React.Component {
   static navigationOptions = {
@@ -31,11 +23,14 @@ class LocationScreen extends React.Component {
   render() {
     return (
       <SafeAreaView style={{flex: 1}}>
-        <ScrollView
+        <View
           style={styles.container}
           contentContainerStyle={styles.contentContainerStyle}>
           <View style={styles.textInputContainer}>
-            <TextInput style={styles.input} placeholder="Enter a town/city" />
+            <TextInput
+              style={styles.input}
+              placeholder="Enter cafe name here"
+            />
             <TouchableOpacity
               onPress={() => this.props.navigation.goBack(null)}>
               <StyledText.Bold style={styles.cancelButton}>
@@ -43,20 +38,20 @@ class LocationScreen extends React.Component {
               </StyledText.Bold>
             </TouchableOpacity>
           </View>
-          <View style={styles.mapContainer}>
-            <TouchableOpacity style={styles.locationItem}>
-              <StyledText.Bold>Current location</StyledText.Bold>
-            </TouchableOpacity>
-            <FlatList
-              data={LOCATIONS}
-              renderItem={({item}) => (
-                <TouchableOpacity style={styles.locationItem}>
-                  <StyledText>{item}</StyledText>
-                </TouchableOpacity>
-              )}
-            />
+          <View style={styles.sectionHeader}>
+            <StyledText.Bold>Found 14 Cafes</StyledText.Bold>
+            {/* <StyledText>Current location</StyledText> */}
           </View>
-        </ScrollView>
+          <FlatList
+            data={[1, 2, 3, 4, 5, 6, 7]}
+            renderItem={({index}) => (
+              <Card
+                photoUrl={`https://source.unsplash.com/200x200/?cafe,${index}`}
+                style={{marginTop: 20}}
+              />
+            )}
+          />
+        </View>
       </SafeAreaView>
     );
   }
@@ -66,6 +61,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    marginTop: layouts.gutterWidth / 2,
   },
   contentContainerStyle: {
     flexDirection: 'column',
@@ -90,12 +86,11 @@ const styles = StyleSheet.create({
   cancelButton: {
     marginLeft: 15,
   },
-  mapContainer: {
+  content: {
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    marginVertical: layouts.gutterWidth / 2,
   },
-  locationItem: {
+  sectionHeader: {
     paddingVertical: layouts.gutterWidth / 2,
     paddingHorizontal: layouts.gutterWidth / 2,
     borderBottomWidth: 0.4,

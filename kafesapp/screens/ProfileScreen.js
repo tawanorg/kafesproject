@@ -5,17 +5,18 @@ import StyledText from 'components/StyledText';
 import Avatar from 'components/Avatar';
 import themes from 'theme/themes';
 import layouts from 'theme/layouts';
+import IconSetting from 'images/icon-menubar.svg';
 
 class ProfileScreen extends React.Component {
   static navigationOptions = ({navigation}) => ({
     header: () => (
       <HeaderBar
-        title="@tawan"
+        title="tawan"
         rightButton={
           <TouchableOpacity
             onPress={() => navigation.navigate('MySetting')}
-            style={styles.title}>
-            <StyledText.Bold>Manage</StyledText.Bold>
+            style={styles.rightButton}>
+            <IconSetting width={32} height={32} fill={themes.mainFontColor} />
           </TouchableOpacity>
         }
       />
@@ -87,8 +88,8 @@ const styles = StyleSheet.create({
   username: {
     paddingVertical: layouts.gutterWidth / 2,
   },
-  title: {
-    top: 10,
+  rightButton: {
+    top: 3,
   },
 });
 

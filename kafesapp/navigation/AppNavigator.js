@@ -6,6 +6,7 @@ import {
 } from 'react-navigation';
 
 import LocationScreen from 'screens/LocationScreen';
+import SearchScreen from 'screens/SearchScreen';
 import MainTabNavigator from './MainTabNavigator.js';
  
 export default createAppContainer(
@@ -15,6 +16,7 @@ export default createAppContainer(
       // Read more at https://reactnavigation.org/docs/en/auth-flow.html
       Main: MainTabNavigator,
       LocationModal: LocationScreen,
+      SearchModal: SearchScreen,
       // Onboarding: ProfileScreen,
     },
     {

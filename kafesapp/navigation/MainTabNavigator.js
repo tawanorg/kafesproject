@@ -1,17 +1,18 @@
 import React from 'react';
 import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
 
-import DashboardScreen from 'screens/DashboardScreen';
-import ExploreScreen from 'screens/ExploreScreen';
+// import ExploreMapScreen from 'screens/ExploreMapScreen';
+// import DashboardScreen from 'screens/DashboardScreen';
 import UserScreen from 'screens/UserScreen';
 import NotificationTopNavigator from './NotificationTopNavigator';
 import CafeMenuSvg from 'images/menu-cafe';
-import SearchMenuSvg from 'images/menu-search.svg';
-import SearchMenuOutlineSvg from 'images/menu-search-outline.svg';
+// import SearchMenuSvg from 'images/menu-search.svg';
+// import SearchMenuOutlineSvg from 'images/menu-search-outline.svg';
 import NotificationMenuSvg from 'images/menu-notification.svg';
 import NotificationOutlineMenuSvg from 'images/menu-notification-outline.svg';
 import UserMenuSvg from 'images/menu-user.svg';
 import themes from 'theme/themes';
+import HomeScreen from 'screens/HomeScreen';
 
 const menuStyles = focused => ({
   width: 30,
@@ -21,28 +22,28 @@ const menuStyles = focused => ({
 
 const appScreens = {
   Home: {
-    screen: DashboardScreen,
+    screen: HomeScreen,
     navigationOptions: {
       tabBarLabel: () => null,
       tabBarIcon: ({focused}) => <CafeMenuSvg {...menuStyles(focused)} />,
     },
   },
-  Explore: {
-    screen: ExploreScreen,
-    navigationOptions: {
-      tabBarLabel: () => null,
-      tabBarIcon: ({focused}) =>
-        focused ? (
-          <SearchMenuOutlineSvg
-            {...menuStyles(focused)}
-            width={32}
-            height={32}
-          />
-        ) : (
-          <SearchMenuSvg {...menuStyles(focused)} />
-        ),
-    },
-  },
+  // Explore: {
+  //   screen: ExploreMapScreen,
+  //   navigationOptions: {
+  //     tabBarLabel: () => null,
+  //     tabBarIcon: ({focused}) =>
+  //       focused ? (
+  //         <SearchMenuOutlineSvg
+  //           {...menuStyles(focused)}
+  //           width={32}
+  //           height={32}
+  //         />
+  //       ) : (
+  //         <SearchMenuSvg {...menuStyles(focused)} />
+  //       ),
+  //   },
+  // },
   Notification: {
     screen: NotificationTopNavigator,
     navigationOptions: {
